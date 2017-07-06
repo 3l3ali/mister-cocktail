@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="card">
+    <div class="row">
+
+      <div class="col-xs-6 col-md-offset-2 col-md-4">
+        <h2><%= @cocktail.name %></h2>
+        <%= link_to "Add a dose", new_cocktail_dose_path(@cocktail), class: "btn btn-danger", id: "add-dose-button"%>
+      </div>
+
+      <div class="col-xs-6 col-md-4">
+        <h4>Ingredient : </h4>
+
+        <ul id="list-ul">
+          <% @cocktail.ingredients.each do |ingredient| %>
+            <li><%= ingredient.name %></li>
+          <% end %>
+        </ul>
+
+        <h4>Doses : </h4>
+        <ul id="list-ul">
+          <% @cocktail.doses.each do |dose| %>
+            <li>
+              <%= dose.description %> / <%= dose.ingredient.name %>
+              <%= link_to "delete" , dose_path(dose) , method: :delete , data: {confirm: "Are you sure?"}%>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
